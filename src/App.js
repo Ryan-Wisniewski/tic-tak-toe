@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import {w3cwebsocket as W3CWebSocket} from 'websocket'
 import Confetti from 'react-confetti'
 import getWindowDemension from './getWindowDimensions'
@@ -7,31 +7,13 @@ import './App.css';
 const client = new W3CWebSocket('ws://tic-tac-toe-be-fg32na12.herokuapp.com/')
 function App() {
   let {width, height} = getWindowDemension()
-  // let [init, setInit] = useState(false)
   let [board, setBoard] = useState([])
-  let [player, setPlayer] = useState(false) // player 1 is false
   let [winnerMessage, setWinnerMessage] = useState(null)
   let [player1WinCount, setPlayer1WinCount] = useState(0)
   let [player2WinCount, setPlayer2WinCount] = useState(0)
   let [movesCount, setMovesCount] = useState(0)
 
   let [turn, setTurn] = useState(0)
-
-  // if(init == false){
-  //   for(let i = 0; i < 3; i++){
-  //     for(let j = 0; j < 3; j++){
-  //       board.push({x: i, y: j, bool: null})
-  //     }
-  //   }
-  //   setInit(true)
-  // }
-
-  const onButtonClicked = (value) => {
-    client.send(JSON.stringify({
-      type: 'message',
-      turn: turn
-    }))
-  }
 
   client.onopen = () => {
     console.log('WebSocket Client Connected')
@@ -47,12 +29,8 @@ function App() {
     setTurn(dataFromServer.turn)
   }
 
-
-
   const onclick = (e, i, x, y) => {
-
     if(board[i].bool === null && setWinnerMessage !== null){
-      console.log('1i and turn', i, turn)
       if(turn === 0){
         //player 1. add X
         board[i].bool = false
@@ -62,8 +40,7 @@ function App() {
         board[i].bool = true
         setMovesCount(movesCount + 1)
       }
-      console.log("CURRENT BOARD", board, turn)
-      // check(e, i, x, y)
+      // console.log("CURRENT BOARD", board, turn)
       client.send(JSON.stringify({
         type: 'message',
         board: board,
@@ -115,17 +92,17 @@ function App() {
     if(board.length > 0){
     
       if((board[0].bool === true && board[1].bool === true && board[2].bool === true) || (board[0].bool === false && board[1].bool === false && board[2].bool === false)){
-        console.log('Someone wins 1')
+        // console.log('Someone wins 1')
         board[0].bool === false ? setWinnerMessage('1P') :  setWinnerMessage('2P')
         board[0].bool === false ? setPlayer1WinCount(player1WinCount + 1) : setPlayer2WinCount(player2WinCount + 1)
         reset()
       } else if((board[3].bool === true && board[4].bool === true && board[5].bool === true) || (board[3].bool === false && board[4].bool === false && board[5].bool === false)){
-        console.log('Someone wins 2')
+        // console.log('Someone wins 2')
         board[3].bool === false ? setWinnerMessage('1P') :  setWinnerMessage('2P')
         board[3].bool === false ? setPlayer1WinCount(player1WinCount + 1) : setPlayer2WinCount(player2WinCount + 1)
         reset()
       } else if((board[6].bool === true && board[7].bool === true && board[8].bool === true) || (board[6].bool === false && board[7].bool === false && board[8].bool === false)){
-        console.log('Someone wins 3')
+        // console.log('Someone wins 3')
         board[6].bool === false ? setWinnerMessage('1P') :  setWinnerMessage('2P')
         board[6].bool === false ? setPlayer1WinCount(player1WinCount + 1) : setPlayer2WinCount(player2WinCount + 1)
         reset()
@@ -133,17 +110,17 @@ function App() {
       
       // columns check
       if((board[0].bool === true && board[3].bool === true && board[6].bool === true) || (board[0].bool === false && board[3].bool === false && board[6].bool === false)){
-        console.log('Someone wins 4')
+        // console.log('Someone wins 4')
         board[0].bool === false ? setWinnerMessage('1P') :  setWinnerMessage('2P')
         board[0].bool === false ? setPlayer1WinCount(player1WinCount + 1) : setPlayer2WinCount(player2WinCount + 1)
         reset()
       } else if((board[1].bool === true && board[4].bool === true && board[7].bool === true) || (board[1].bool === false && board[4].bool === false && board[7].bool === false)){
-        console.log('Someone wins 5')
+        // console.log('Someone wins 5')
         board[1].bool === false ? setWinnerMessage('1P') :  setWinnerMessage('2P')
         board[1].bool === false ? setPlayer1WinCount(player1WinCount + 1) : setPlayer2WinCount(player2WinCount + 1)
         reset()
       } else if((board[2].bool === true && board[5].bool === true && board[8].bool === true) || (board[2].bool === false && board[5].bool === false && board[8].bool === false)){
-        console.log('Someone wins 6')
+        // console.log('Someone wins 6')
         board[2].bool === false ? setWinnerMessage('1P') :  setWinnerMessage('2P')
         board[2].bool === false ? setPlayer1WinCount(player1WinCount + 1) : setPlayer2WinCount(player2WinCount + 1)
         reset()
@@ -151,12 +128,12 @@ function App() {
 
       //diagonals 
       if((board[0].bool === true && board[4].bool === true && board[8].bool === true) || (board[0].bool === false && board[4].bool === false && board[8].bool === false)){
-        console.log('Someone wins 7')
+        // console.log('Someone wins 7')
         board[0].bool === false ? setWinnerMessage('1P') :  setWinnerMessage('2P')
         board[0].bool === false ? setPlayer1WinCount(player1WinCount + 1) : setPlayer2WinCount(player2WinCount + 1)
         reset()
       } else if((board[2].bool === true && board[4].bool === true && board[6].bool === true) || (board[2].bool === false && board[4].bool === false && board[6].bool === false)){
-        console.log('Someone wins 8')
+        // console.log('Someone wins 8')
         board[2].bool === false ? setWinnerMessage('1P') :  setWinnerMessage('2P')
         board[2].bool === false ? setPlayer1WinCount(player1WinCount + 1) : setPlayer2WinCount(player2WinCount + 1)
         reset()
