@@ -1,12 +1,18 @@
 .App {
   text-align: center;
+  background-color: rgb(121, 77, 12);
   height: 100vh;
 }
 
+.title{
+  font-weight: 900;
+  background-color: white;
+  padding-bottom: 2rem;
+}
 .board{
   display: grid;
   grid-template-columns: repeat(3, 5rem);
-  margin-top: 5rem;
+  padding-top: 15rem;
   justify-content: center;
   align-items: center;
 }
@@ -17,4 +23,36 @@
   background-color: black;
   height: 2rem;
   padding: 2rem 0;
+}
+
+.textDiv{
+  position: absolute;
+  width: 30rem;
+  height: 10rem;
+  top: 50%;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+  border: 1px solid black;
+  background: linear-gradient(gold, yellow,gold, yellow,gold, yellow)
+
+}
+
+.text{
+  font-size: 2rem;
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+}
+
+.confetti{
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  height: 100vh;
+  width: 100vh;
 }
