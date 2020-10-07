@@ -26,6 +26,9 @@ function App() {
     if (dataFromServer.board !== board){
       setBoard(dataFromServer.board)
     }
+    if(dataFromServer.reset === true){
+      reset()
+    }
     setTurn(dataFromServer.turn)
   }
 
@@ -67,19 +70,11 @@ function App() {
       {x: 2, y: 2, bool: null}
     ]
     setBoard(resetBoard)
-    // let box = document.getElementsByClassName('box')
-    // for(let i = 0; i < box.length; i++){
-    //   let newBox = document.getElementById(i)
-    //   newBox.style.backgroundColor = 'black'
-    //   newBox.style.padding = '2rem 0'
-    //   newBox.height = '2rem';
-    //   newBox.textContent = ' '
-    //   console.log(newBox)
-    // }
     client.send(JSON.stringify({
       type: 'message',
       board: resetBoard,
-      turn: turn
+      turn: turn,
+      reset: true
     }))
   }
 
