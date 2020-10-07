@@ -26,9 +26,6 @@ function App() {
     if (dataFromServer.board !== board){
       setBoard(dataFromServer.board)
     }
-    if(dataFromServer.reset === true){
-      reset()
-    }
     setTurn(dataFromServer.turn)
   }
 
