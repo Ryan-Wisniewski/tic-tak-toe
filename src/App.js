@@ -74,7 +74,7 @@ function App() {
       type: 'message',
       board: resetBoard,
       turn: turn,
-      reset: true
+      reset: 0
     }))
   }
 
@@ -134,11 +134,11 @@ function App() {
         reset()
       }
 
-      if(movesCount === 9){
-        //reset the board. Tie was reached.
-        console.log('TIE! Reset board now')
-        reset()
-      }
+      // if(movesCount === 9){
+      //   //reset the board. Tie was reached.
+      //   console.log('TIE! Reset board now')
+      //   reset()
+      // }
       
       for(let i = 0; i < board.length; i++){
         let newDiv = document.getElementById(i)
