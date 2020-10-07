@@ -4,7 +4,7 @@ import Confetti from 'react-confetti'
 import getWindowDemension from './getWindowDimensions'
 import './App.css';
 
-const client = new W3CWebSocket('ws://tic-tac-toe-be-fg32na12.herokuapp.com/')
+const client = new W3CWebSocket('wss://tic-tac-toe-be-fg32na12.herokuapp.com/')
 function App() {
   let {width, height} = getWindowDemension()
   let [board, setBoard] = useState([])
