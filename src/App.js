@@ -133,18 +133,14 @@ function App() {
         reset()
       }
 
-      // if(movesCount === 9){
-      //   //reset the board. Tie was reached.
-      //   console.log('TIE! Reset board now')
-      //   reset()
-      // }
       let count = 0
       for(let i = 0; i < board.length; i++){
         if(board[i].bool === (true || false)){
-          console.log('WINN', count)
+          // console.log('WINN', count)
           count++
         }
       }
+      console.log('count;', count)
       if(count === 9){
         reset()
       }
