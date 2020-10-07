@@ -73,8 +73,7 @@ function App() {
     client.send(JSON.stringify({
       type: 'message',
       board: resetBoard,
-      turn: turn,
-      reset: 0
+      turn: turn
     }))
   }
 
@@ -139,6 +138,16 @@ function App() {
       //   console.log('TIE! Reset board now')
       //   reset()
       // }
+      let count = 0
+      for(let i = 0; i < board.length; i++){
+        if(board[i].bool === (true || false)){
+          console.log('WINN', count)
+          count++
+        }
+      }
+      if(count === 9){
+        reset()
+      }
       
       for(let i = 0; i < board.length; i++){
         let newDiv = document.getElementById(i)
