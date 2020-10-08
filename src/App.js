@@ -132,7 +132,7 @@ function App() {
 
       let count = 0
       for(let i = 0; i < board.length; i++){
-        if(board[i].bool === (true || false)){
+        if(board[i].bool === true || board[i].bool === false){
           console.log('WINN', i, board[i])
           count++
         }
