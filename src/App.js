@@ -139,6 +139,7 @@ function App() {
       }
       console.log('count;', count)
       if(count === 9){
+        setWinnerMessage('Nobody')
         reset()
       }
       
